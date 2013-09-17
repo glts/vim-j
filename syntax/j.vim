@@ -18,6 +18,7 @@ syn match  jNumber  /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
 " numbers are much more complicated, see http://www.jsoftware.com/help/dictionary/dcons.htm
 " also think of 4!:77, these are not numbers
 syn match  jNumber  /\<__\=\>/
+syn match  jNumber  /\<_\=\d\+x\>/
 " syn match  jOperator /[-=<>_+*%{][.:]\=/
 syn match  jComment /NB\..*$/
 
