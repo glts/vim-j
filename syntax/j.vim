@@ -13,7 +13,7 @@ syn match jControl /\<\%(assert\|break\|case\|catch\|catchd\|catcht\|continue\|d
 syn match jControl /\<for_\k\+\./
 syn match jControl /\<\%(goto\|label\)_\k\+\./
 
-syn region jString  oneline start=/'/ skip=/''/ end=/'/
+syn region jString oneline start=/'/ skip=/''/ end=/'/
 
 " Patterns for numbers in general, rational numbers, numbers with explicit
 " base, infinities, and numbers with extended precision.
@@ -27,23 +27,17 @@ syn region jString  oneline start=/'/ skip=/''/ end=/'/
 "
 " For the rest, a compromise between correctness and practicality was made.
 " See http://www.jsoftware.com/help/dictionary/dcons.htm for reference.
-syn match  jNumber  /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=/
-syn match  jNumber  /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
-syn match  jNumber  /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
-syn match  jNumber  /\<__\=\>/
-syn match  jNumber  /\<_\=\d\+x\>/
+syn match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=/
+syn match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
+syn match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
+syn match jNumber /\<__\=\>/
+syn match jNumber /\<_\=\d\+x\>/
 
-" syn match  jOperator /[-=<>_+*%{][.:]\=/
-syn match  jComment /NB\..*$/
+syn match jComment /NB\..*$/
 
-syn region jFunction start=/.*\d\s\+:\s*\d\s*/ matchgroup=jEnd end=/^\s*)\s*$/
-
+hi def link jControl Statement
 hi def link jString String
 hi def link jNumber Number
-hi def link jControl Statement
-hi def link jOperator Identifier
 hi def link jComment Comment
-hi def link jFunction Function
-hi def link jEnd Function
 
 let b:current_syntax = 'j'
