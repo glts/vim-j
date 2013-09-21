@@ -1,17 +1,17 @@
-if exists('b:current_syntax')
+" Vim syntax file
+" Language:	J
+" Maintainer:	David Bürgin <676c7473@gmail.com>
+" Last Change:	2013-09-21
+
+if exists("b:current_syntax")
   finish
 endif
 
-" For the time being ...
-silent! set re=1
-
 syntax case match
-syntax sync fromstart
+syntax sync minlines=50
 
-syn match jControl /\<\%(assert\|break\|case\|catch\|catchd\|catcht\|continue\|do\|else\|elseif\|end\|fcase\|for\|if\|return\|select\|throw\|try\|while\|whilst\)\./
-" TODO work in progress
-syn match jControl /\<for_\k\+\./
-syn match jControl /\<\%(goto\|label\)_\k\+\./
+syn match jControl /\<\%(assert\|break\|case\|catch[dt]\=\|continue\|do\|else\%(if\)\=\|end\|fcase\|for\|if\|return\|select\|throw\|try\|whil\%(e\|st\)\)\./
+syn match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 
 syn region jString oneline start=/'/ skip=/''/ end=/'/
 
@@ -40,4 +40,4 @@ hi def link jString String
 hi def link jNumber Number
 hi def link jComment Comment
 
-let b:current_syntax = 'j'
+let b:current_syntax = "j"
