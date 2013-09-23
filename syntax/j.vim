@@ -33,11 +33,13 @@ syn match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
 syn match jNumber /\<__\=\>/
 syn match jNumber /\<_\=\d\+x\>/
 
-syn match jComment /NB\..*$/
+syn match jComment /NB\..*$/ contains=jTodo,@Spell
+syn keyword jTodo TODO FIXME XXX contained
 
 hi def link jControl Statement
 hi def link jString String
 hi def link jNumber Number
 hi def link jComment Comment
+hi def link jTodo Todo
 
 let b:current_syntax = "j"
