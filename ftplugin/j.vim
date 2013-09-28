@@ -13,5 +13,6 @@ setlocal comments=:NB.
 setlocal commentstring=NB.\ %s
 setlocal formatoptions-=t formatoptions+=croql
 setlocal shiftwidth=2 softtabstop=2 expandtab
+setlocal matchpairs=(:)
 
-let b:undo_ftplugin = "setl et< sts< sw< fo< cms< com< isk<"
+let b:undo_ftplugin = "setl mps< et< sts< sw< fo< cms< com< isk<"
