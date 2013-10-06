@@ -11,7 +11,7 @@ let b:did_ftplugin = 1
 setlocal iskeyword=48-57,65-90,_,97-122
 setlocal comments=:NB.
 setlocal commentstring=NB.\ %s
-setlocal formatoptions-=t formatoptions+=croql
+setlocal formatoptions-=t
 setlocal shiftwidth=2 softtabstop=2 expandtab
 setlocal matchpairs=(:)
 
