@@ -1,7 +1,7 @@
 " Vim filetype plugin
 " Language:	J
 " Maintainer:	David Bürgin <676c7473@gmail.com>
-" Last Change:	2013-09-21
+" Last Change:	2013-10-06
 
 if exists("b:did_ftplugin")
   finish
