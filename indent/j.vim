@@ -27,11 +27,11 @@ function GetJIndent()
   let indent = indent(prevlnum)
   if getline(prevlnum) =~# '^\s*\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|fcase\|for\%(_\a\k*\)\=\|if\|select\|try\|whil\%(e\|st\)\)\.'
     if getline(prevlnum) !~# '\<end\.'
-      let indent += &shiftwidth
+      let indent += shiftwidth()
     endif
   endif
   if getline(v:lnum) =~# '^\s*\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|end\|fcase\)\.'
-    let indent -= &shiftwidth
+    let indent -= shiftwidth()
   endif
   return indent
 endfunction
