@@ -4,7 +4,7 @@
 " URL:		https://github.com/glts/vim-j
 " Last Change:	2013-09-21
 
-if exists("b:did_indent")
+if exists('b:did_indent')
   finish
 endif
 let b:did_indent = 1
@@ -13,9 +13,9 @@ setlocal indentexpr=GetJIndent()
 setlocal indentkeys-=0{,0},\:,0#
 setlocal indentkeys+=0),=case.,=catch.,=catchd.,=catcht.,=do.,=else.,=elseif.,=end.,=fcase.
 
-let b:undo_indent = "setl indk< inde<"
+let b:undo_indent = 'setl indk< inde<'
 
-if exists("*GetJIndent")
+if exists('*GetJIndent')
   finish
 endif
 

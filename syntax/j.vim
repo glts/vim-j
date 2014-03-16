@@ -4,7 +4,7 @@
 " URL:		https://github.com/glts/vim-j
 " Last Change:	2013-10-06
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
   finish
 endif
 
@@ -43,4 +43,4 @@ highlight default link jNumber Number
 highlight default link jComment Comment
 highlight default link jTodo Todo
 
-let b:current_syntax = "j"
+let b:current_syntax = 'j'

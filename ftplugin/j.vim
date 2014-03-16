@@ -4,7 +4,7 @@
 " URL:		https://github.com/glts/vim-j
 " Last Change:	2013-10-06
 
-if exists("b:did_ftplugin")
+if exists('b:did_ftplugin')
   finish
 endif
 let b:did_ftplugin = 1
@@ -16,4 +16,4 @@ setlocal formatoptions-=t
 setlocal shiftwidth=2 softtabstop=2 expandtab
 setlocal matchpairs=(:)
 
-let b:undo_ftplugin = "setl mps< et< sts< sw< fo< cms< com< isk<"
+let b:undo_ftplugin = 'setl mps< et< sts< sw< fo< cms< com< isk<'
