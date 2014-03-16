@@ -16,4 +16,4 @@ setlocal formatoptions-=t
 setlocal shiftwidth=2 softtabstop=2 expandtab
 setlocal matchpairs=(:)
 
-let b:undo_ftplugin = 'setl mps< et< sts< sw< fo< cms< com< isk<'
+let b:undo_ftplugin = 'setlocal matchpairs< expandtab< softtabstop< shiftwidth< formatoptions< commentstring< comments< iskeyword<'

@@ -13,7 +13,7 @@ setlocal indentexpr=GetJIndent()
 setlocal indentkeys-=0{,0},\:,0#
 setlocal indentkeys+=0),=case.,=catch.,=catchd.,=catcht.,=do.,=else.,=elseif.,=end.,=fcase.
 
-let b:undo_indent = 'setl indk< inde<'
+let b:undo_indent = 'setlocal indentkeys< indentexpr<'
 
 if exists('*GetJIndent')
   finish
