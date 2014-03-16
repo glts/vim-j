@@ -15,8 +15,8 @@ syntax match jControl /\<\%(assert\|break\|case\|catch[dt]\=\|continue\|do\|else
 syntax match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 
 " Standard library names defined in the z locale by default. A few verbs need
-" to be defined with ":syntax match" instead of ":syntax keyword" because they
-" would otherwise take precedence over the corresponding jControl items.
+" to be defined with ":syntax match" because they would otherwise take
+" precedence over the corresponding jControl items.
 syntax keyword jStandardNoun ARGV BINPATH CR CRLF DEL Debug EAV EMPTY FF FHS IF64 IFIOS IFJCDROID IFJHS IFQT IFRASPI IFUNIX IFWIN IFWINCE IFWINE IFWOW64 JB01 JBOXED JCHAR JCMPX JFL JINT JPTR JSIZES JSTR JTYPES JVERSION LF LF2 TAB UNAME UNXLIB adverb andurl conjunction dbhelp dyad libjqt monad noun verb
 syntax keyword jStandardAdverb define each every fapplylines inv inverse items leaf rows table
 syntax keyword jStandardConjunction bind cuts def on
