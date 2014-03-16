@@ -16,20 +16,22 @@ syntax match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 
 syntax region jString oneline start=/'/ skip=/''/ end=/'/
 
-" Patterns for numbers in general, rational numbers, numbers with explicit
-" base, infinities, and numbers with extended precision.
+" Number patterns. Matching J numbers is difficult. The regular expression
+" used for the general case roughly embodies this grammar sketch:
 "
-" Matching J numbers is difficult. The regular expression used for the general
-" case roughly embodies this grammar sketch:
+"     BASE     := /_?\d+(\.\d*)?([eE]_?\d+)?/
+"     RATIONAL := BASE  |  BASE r BASE
+"     COMPLEX  := BASE  |  BASE (j|a[dr]) BASE
+"     JNUMBER  := RATIONAL  |  RATIONAL [px] RATIONAL  |  COMPLEX  |  COMPLEX [px] COMPLEX
 "
-"         EXP     := /_?\d+(\.\d*)?([eE]_?\d+)?/
-"         COMP    := EXP  |  EXP (j|a[dr]) EXP
-"         PIEU    := COMP  |  COMP [px] COMP
+" The grammar is implemented as shown in this pseudo-regexp:
 "
-" For the rest, a compromise between correctness and practicality was made.
-" See http://www.jsoftware.com/help/dictionary/dcons.htm for reference.
-syntax match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=/
-syntax match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
+"        base         rational                       complex                       remainder
+"     /\< B  (  [r]B ([px]B([r]B)?)?  |  (j|a[dr])B ([px]B((j|a[dr])B)?)?  |  [px]B ((j|a[dr]|r)B)?  )?/
+"
+" All in all, a compromise between correctness and practicality had to be
+" made. See http://www.jsoftware.com/help/dictionary/dcons.htm for reference.
+syntax match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=\)\|\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=\)\|\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\|r\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\)\=/
 syntax match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
 syntax match jNumber /\<__\=\>/
 syntax match jNumber /\<_\=\d\+x\>/
