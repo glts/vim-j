@@ -11,10 +11,10 @@ endif
 syntax case match
 syntax sync minlines=50
 
-syn match jControl /\<\%(assert\|break\|case\|catch[dt]\=\|continue\|do\|else\%(if\)\=\|end\|fcase\|for\|if\|return\|select\|throw\|try\|whil\%(e\|st\)\)\./
-syn match jControl /\<\%(for\|goto\|label\)_\a\k*\./
+syntax match jControl /\<\%(assert\|break\|case\|catch[dt]\=\|continue\|do\|else\%(if\)\=\|end\|fcase\|for\|if\|return\|select\|throw\|try\|whil\%(e\|st\)\)\./
+syntax match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 
-syn region jString oneline start=/'/ skip=/''/ end=/'/
+syntax region jString oneline start=/'/ skip=/''/ end=/'/
 
 " Patterns for numbers in general, rational numbers, numbers with explicit
 " base, infinities, and numbers with extended precision.
@@ -28,19 +28,19 @@ syn region jString oneline start=/'/ skip=/''/ end=/'/
 "
 " For the rest, a compromise between correctness and practicality was made.
 " See http://www.jsoftware.com/help/dictionary/dcons.htm for reference.
-syn match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=/
-syn match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
-syn match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
-syn match jNumber /\<__\=\>/
-syn match jNumber /\<_\=\d\+x\>/
+syntax match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\%([px]_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\%(\%(j\|a[dr]\)_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=\)\=\)\=/
+syntax match jNumber /\<_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=r_\=\d\+\%(\.\d*\)\=\%([eE]_\=\d\+\)\=/
+syntax match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
+syntax match jNumber /\<__\=\>/
+syntax match jNumber /\<_\=\d\+x\>/
 
-syn match jComment /NB\..*$/ contains=jTodo,@Spell
-syn keyword jTodo TODO FIXME XXX contained
+syntax match jComment /NB\..*$/ contains=jTodo,@Spell
+syntax keyword jTodo TODO FIXME XXX contained
 
-hi def link jControl Statement
-hi def link jString String
-hi def link jNumber Number
-hi def link jComment Comment
-hi def link jTodo Todo
+highlight default link jControl Statement
+highlight default link jString String
+highlight default link jNumber Number
+highlight default link jComment Comment
+highlight default link jTodo Todo
 
 let b:current_syntax = "j"
