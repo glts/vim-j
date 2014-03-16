@@ -17,11 +17,11 @@ syntax match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 " Standard library names defined in the z locale by default. A few verbs need
 " to be defined with ":syntax match" because they would otherwise take
 " precedence over the corresponding jControl items.
-syntax keyword jStandardNoun ARGV BINPATH CR CRLF DEL Debug EAV EMPTY FF FHS IF64 IFIOS IFJCDROID IFJHS IFQT IFRASPI IFUNIX IFWIN IFWINCE IFWINE IFWOW64 JB01 JBOXED JCHAR JCMPX JFL JINT JPTR JSIZES JSTR JTYPES JVERSION LF LF2 TAB UNAME UNXLIB adverb andurl conjunction dbhelp dyad libjqt monad noun verb
-syntax keyword jStandardAdverb define each every fapplylines inv inverse items leaf rows table
-syntax keyword jStandardConjunction bind cuts def on
-syntax keyword jStandardVerb AND Endian IFDEF Note OR XOR alpha17 alpha27 anddf android_exec_host andunzip apply boxopen boxxopen bx calendar cd cdcb cder cderx cdf charsub chopstring clear coclass cocreate cocurrent codestroy coerase cofind cofindv cofullname coinfo coinsert coname conames conew conl conouns conounsx copath copathnl copathnlx coreset costate cut cutLF cutopen cutpara datatype dbctx dberm dberr dbg dbjmp dblocals dblxq dblxs dbnxt dbq dbr dbret dbrr dbrrx dbrun dbs dbsig dbsq dbss dbst dbstack dbstk dbstop dbstopme dbstopnext dbstops dbtrace dbview deb debc delstring detab dfh dir dircompare dircompares dirfind dirpath dirss dirssrplc dirtree dirused dlb dltb dltbs dquote drop dropafter dropto dtb dtbs echo empty endian erase evtloop exit expand f2utf8 fappend fappends fboxname fc fcopynew fdir ferase fetch fexist fexists fgets file2url fixdotdot fliprgb fmakex foldpara foldtext fpathcreate fpathname fputs fread freadblock freadr freads frename freplace fsize fss fssrplc fstamp fstringreplace ftype fview fwrite fwritenew fwrites getargs getdate getenv getqtbin hfd hostpathsep ic install iospath isatty isotimestamp isutf8 jcwdpath joinstring jpathsep jsystemdefs list ljust load loadd mema memf memr memw nameclass namelist names nc nl pick quote require rjust rplc script scriptd setbreak show sign sminfo smoutput sort split splitnostring splitstring ss startupandroid startupconsole startupide stderr stdin stdout stringreplace symdat symget symset take takeafter taketo timespacex timestamp timex tmoutput toCRLF toHOST toJ todate todayno tolower topara toupper tsdiff tsrep tstamp type ucp ucpcount unxlib usleep utf8 uucp valdate wcsize weekday weeknumber weeksinyear winpathsep
-syntax match   jStandardVerb /\<\%(assert\|break\|do\)\>\.\@!/
+syntax keyword jNoun ARGV BINPATH CR CRLF DEL Debug EAV EMPTY FF FHS IF64 IFIOS IFJCDROID IFJHS IFQT IFRASPI IFUNIX IFWIN IFWINCE IFWINE IFWOW64 JB01 JBOXED JCHAR JCMPX JFL JINT JPTR JSIZES JSTR JTYPES JVERSION LF LF2 TAB UNAME UNXLIB adverb andurl conjunction dbhelp dyad libjqt monad noun verb
+syntax keyword jAdverb define each every fapplylines inv inverse items leaf rows table
+syntax keyword jConjunction bind cuts def on
+syntax keyword jVerb AND Endian IFDEF Note OR XOR alpha17 alpha27 anddf android_exec_host andunzip apply boxopen boxxopen bx calendar cd cdcb cder cderx cdf charsub chopstring clear coclass cocreate cocurrent codestroy coerase cofind cofindv cofullname coinfo coinsert coname conames conew conl conouns conounsx copath copathnl copathnlx coreset costate cut cutLF cutopen cutpara datatype dbctx dberm dberr dbg dbjmp dblocals dblxq dblxs dbnxt dbq dbr dbret dbrr dbrrx dbrun dbs dbsig dbsq dbss dbst dbstack dbstk dbstop dbstopme dbstopnext dbstops dbtrace dbview deb debc delstring detab dfh dir dircompare dircompares dirfind dirpath dirss dirssrplc dirtree dirused dlb dltb dltbs dquote drop dropafter dropto dtb dtbs echo empty endian erase evtloop exit expand f2utf8 fappend fappends fboxname fc fcopynew fdir ferase fetch fexist fexists fgets file2url fixdotdot fliprgb fmakex foldpara foldtext fpathcreate fpathname fputs fread freadblock freadr freads frename freplace fsize fss fssrplc fstamp fstringreplace ftype fview fwrite fwritenew fwrites getargs getdate getenv getqtbin hfd hostpathsep ic install iospath isatty isotimestamp isutf8 jcwdpath joinstring jpathsep jsystemdefs list ljust load loadd mema memf memr memw nameclass namelist names nc nl pick quote require rjust rplc script scriptd setbreak show sign sminfo smoutput sort split splitnostring splitstring ss startupandroid startupconsole startupide stderr stdin stdout stringreplace symdat symget symset take takeafter taketo timespacex timestamp timex tmoutput toCRLF toHOST toJ todate todayno tolower topara toupper tsdiff tsrep tstamp type ucp ucpcount unxlib usleep utf8 uucp valdate wcsize weekday weeknumber weeksinyear winpathsep
+syntax match   jVerb /\<\%(assert\|break\|do\)\>\.\@!/
 
 syntax region jString oneline start=/'/ skip=/''/ end=/'/
 
@@ -50,10 +50,10 @@ syntax match jComment /NB\..*$/ contains=jTodo,@Spell
 syntax match jSharpBang /\%^#!.*$/
 
 highlight default link jControl Statement
-highlight default link jStandardNoun Identifier
-highlight default link jStandardAdverb Identifier
-highlight default link jStandardConjunction Identifier
-highlight default link jStandardVerb Function
+highlight default link jNoun Identifier
+highlight default link jAdverb Identifier
+highlight default link jConjunction Identifier
+highlight default link jVerb Function
 highlight default link jString String
 highlight default link jNumber Number
 highlight default link jTodo Todo
