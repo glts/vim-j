@@ -31,7 +31,7 @@ function GetJIndent()
       let indent += shiftwidth()
     endif
   endif
-  if getline(v:lnum) =~# '^\s*\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|end\|fcase\)\.'
+  if getline(v:lnum) =~# '^\s*\%(\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|end\|fcase\)\.\)\|)'
     let indent -= shiftwidth()
   endif
   return indent
