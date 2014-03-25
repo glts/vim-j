@@ -19,12 +19,11 @@ if exists('*GetJIndent')
   finish
 endif
 
-function GetJIndent()
+function GetJIndent() abort
   let prevlnum = prevnonblank(v:lnum-1)
   if prevlnum == 0
     return 0
   endif
-
   let indent = indent(prevlnum)
   if getline(prevlnum) =~# '^\s*\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|fcase\|for\%(_\a\k*\)\=\|if\|select\|try\|whil\%(e\|st\)\)\.'
     if getline(prevlnum) !~# '\<end\.'
