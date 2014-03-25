@@ -11,7 +11,7 @@ let b:did_indent = 1
 
 setlocal indentexpr=GetJIndent()
 setlocal indentkeys-=0{,0},\:,0#
-setlocal indentkeys+=0),=case.,=catch.,=catchd.,=catcht.,=do.,=else.,=elseif.,=end.,=fcase.
+setlocal indentkeys+=0),0<:>,=case.,=catch.,=catchd.,=catcht.,=do.,=else.,=elseif.,=end.,=fcase.
 
 let b:undo_indent = 'setlocal indentkeys< indentexpr<'
 
@@ -30,7 +30,9 @@ function GetJIndent() abort
       let indent += shiftwidth()
     endif
   endif
-  if getline(v:lnum) =~# '^\s*\%(\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|end\|fcase\)\.\)\|)'
+  " Indent less for certain control words at start-of-line and for lone ")"
+  " and ":".
+  if getline(v:lnum) =~# '^\s*\%()\|:\|\%(case\|catch[dt]\=\|do\|else\%(if\)\=\|end\|fcase\)\.\)'
     let indent -= shiftwidth()
   endif
   return indent
