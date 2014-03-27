@@ -45,6 +45,15 @@ syntax match jNumber /\<_\=\d\+\%([eE]\d\+\)\=b_\=[0-9a-z]\+/
 syntax match jNumber /\<__\=\>/
 syntax match jNumber /\<_\=\d\+x\>/
 
+" Primitives. Order is significant both within the patterns and among
+" ":syntax match" statements. Refer to "Parts of speech" in the J dictionary.
+syntax match jNoun /\<a[.:]/
+syntax match jAdverb /[}~]\|[/\\]\.\=\|\<\%([Mbft]\.\|t:\)/
+syntax match jConjunction /"\|`:\=\|[.:@&][.:]\=\|&\.:\|\<\%([dDHT]\.\|[DLS]:\)/
+syntax match jVerb /[=!\]]\|[\^?]\.\=\|[;[]:\=\|{\.\|[_/\\]:\|[<>+*\-%$|,#][.:]\=\|[~}"][.:]\|{\%[::]\|\<\%([ACeEiIjLor]\.\|p\.\.\=\|[ipqsux]:\|0:\|_\=[1-9]:\)/
+syntax match jCopula /=[.:]/
+syntax match jConjunction /;\.\|\^:\|![.:]/
+
 syntax keyword jTodo TODO FIXME XXX contained
 syntax match jComment /NB\..*$/ contains=jTodo,@Spell
 syntax match jSharpBang /\%^#!.*$/
@@ -56,6 +65,11 @@ highlight default link jStdlibConjunction Identifier
 highlight default link jStdlibVerb        Function
 highlight default link jString            String
 highlight default link jNumber            Number
+highlight default link jNoun              Constant
+highlight default link jAdverb            Normal
+highlight default link jConjunction       Normal
+highlight default link jVerb              Normal
+highlight default link jCopula            Normal
 highlight default link jTodo              Todo
 highlight default link jComment           Comment
 highlight default link jSharpBang         PreProc
