@@ -49,15 +49,15 @@ syntax keyword jTodo TODO FIXME XXX contained
 syntax match jComment /NB\..*$/ contains=jTodo,@Spell
 syntax match jSharpBang /\%^#!.*$/
 
-highlight default link jControl Statement
-highlight default link jStdlibNoun Identifier
-highlight default link jStdlibAdverb Identifier
+highlight default link jControl           Statement
+highlight default link jStdlibNoun        Identifier
+highlight default link jStdlibAdverb      Identifier
 highlight default link jStdlibConjunction Identifier
-highlight default link jStdlibVerb Function
-highlight default link jString String
-highlight default link jNumber Number
-highlight default link jTodo Todo
-highlight default link jComment Comment
-highlight default link jSharpBang PreProc
+highlight default link jStdlibVerb        Function
+highlight default link jString            String
+highlight default link jNumber            Number
+highlight default link jTodo              Todo
+highlight default link jComment           Comment
+highlight default link jSharpBang         PreProc
 
 let b:current_syntax = 'j'
