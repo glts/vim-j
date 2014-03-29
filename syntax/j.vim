@@ -54,6 +54,8 @@ syntax match jVerb /[=!\]]\|[\^?]\.\=\|[;[]:\=\|{\.\|[_/\\]:\|[<>+*\-%$|,#][.:]\
 syntax match jCopula /=[.:]/
 syntax match jConjunction /;\.\|\^:\|![.:]/
 
+syntax region jParenPhrase oneline matchgroup=jParen start=/(/ matchgroup=jParen end=/)/ contains=ALLBUT,jControl,jComment
+
 syntax keyword jTodo TODO FIXME XXX contained
 syntax match jComment /NB\..*$/ contains=jTodo,@Spell
 syntax match jSharpBang /\%^#!.*$/
@@ -70,6 +72,7 @@ highlight default link jAdverb            Normal
 highlight default link jConjunction       Normal
 highlight default link jVerb              Normal
 highlight default link jCopula            Normal
+highlight default link jParen             Delimiter
 highlight default link jTodo              Todo
 highlight default link jComment           Comment
 highlight default link jSharpBang         PreProc
