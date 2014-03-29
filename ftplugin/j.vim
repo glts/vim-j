@@ -16,4 +16,38 @@ setlocal formatoptions-=t
 setlocal shiftwidth=2 softtabstop=2 expandtab
 setlocal matchpairs=(:)
 
+" Section movement with ]] ][ [[ []. The start/end patterns below are amended
+" inside the function in order to avoid matching on the current cursor line.
+let s:sectionstart = '.\{-}\<\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\>.*'
+let s:sectionend = '\s*)\s*'
+
+function! s:SearchSection(end, backwards, visualmode) abort
+  if a:visualmode !=# ''
+    normal! gv
+  endif
+  let flags = a:backwards ? 'bsW' : 'sW'
+  if a:end
+    call search('^' . s:sectionend . (a:backwards ? '\n\_.\{-}\%#' : '$'), flags)
+  else
+    call search('^' . s:sectionstart . (a:backwards ? '\n\_.\{-}\%#' : '$'), flags)
+  endif
+endfunction
+
+noremap <script> <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, '')<CR>
+xnoremap <script> <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, visualmode())<CR>
+sunmap <buffer> ]]
+noremap <script> <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, '')<CR>
+xnoremap <script> <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, visualmode())<CR>
+sunmap <buffer> ][
+noremap <script> <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, '')<CR>
+xnoremap <script> <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, visualmode())<CR>
+sunmap <buffer> [[
+noremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, '')<CR>
+xnoremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, visualmode())<CR>
+sunmap <buffer> []
+
 let b:undo_ftplugin = 'setlocal matchpairs< expandtab< softtabstop< shiftwidth< formatoptions< commentstring< comments< iskeyword<'
+let b:undo_ftplugin .= '| silent! execute "unmap <buffer> ]]"'
+let b:undo_ftplugin .= '| silent! execute "unmap <buffer> ]["'
+let b:undo_ftplugin .= '| silent! execute "unmap <buffer> [["'
+let b:undo_ftplugin .= '| silent! execute "unmap <buffer> []"'
