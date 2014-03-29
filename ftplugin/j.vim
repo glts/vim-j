@@ -16,6 +16,8 @@ setlocal formatoptions-=t
 setlocal shiftwidth=2 softtabstop=2 expandtab
 setlocal matchpairs=(:)
 
+let b:undo_ftplugin = 'setlocal matchpairs< expandtab< softtabstop< shiftwidth< formatoptions< commentstring< comments< iskeyword<'
+
 " Section movement with ]] ][ [[ []. The start/end patterns below are amended
 " inside the function in order to avoid matching on the current cursor line.
 let s:sectionstart = '.\{-}\<\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\>.*'
@@ -46,8 +48,15 @@ noremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, '')<CR
 xnoremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, visualmode())<CR>
 sunmap <buffer> []
 
-let b:undo_ftplugin = 'setlocal matchpairs< expandtab< softtabstop< shiftwidth< formatoptions< commentstring< comments< iskeyword<'
 let b:undo_ftplugin .= '| silent! execute "unmap <buffer> ]]"'
 let b:undo_ftplugin .= '| silent! execute "unmap <buffer> ]["'
 let b:undo_ftplugin .= '| silent! execute "unmap <buffer> [["'
 let b:undo_ftplugin .= '| silent! execute "unmap <buffer> []"'
+
+" Enhanced "%" matching (see |:help matchit|)
+if exists('loaded_matchit') && !exists('b:match_words')
+  let b:match_ignorecase = 0
+  let b:match_words = '^.\{-}\<\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>:^\s*\:\s*$:^\s*)\s*$'
+  let b:match_words .= ',\<\%(for\%(_\a\k*\)\=\|if\|select\|try\|whil\%(e\|st\)\)\.:\<\%(case\|catch[dt]\=\|else\%(if\)\=\|fcase\)\.:\<end\.'
+  let b:undo_ftplugin .= '| unlet! b:match_ignorecase b:match_words'
+endif
