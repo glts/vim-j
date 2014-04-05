@@ -56,14 +56,14 @@ let b:undo_ftplugin .= ' | silent! execute "unmap <buffer> ]]"'
                    \ . ' | silent! execute "unmap <buffer> [["'
                    \ . ' | silent! execute "unmap <buffer> []"'
 
-" Browse dialog filter on Windows (see |:help browsefilter|)
+" Browse dialog filter on Windows (see ":help browsefilter")
 if has('gui_win32') && !exists('b:browsefilter')
   let b:browsefilter = "J Script Files (*.ijs)\t*.ijs\n"
                    \ . "All Files (*.*)\t*.*\n"
   let b:undo_ftplugin .= ' | unlet! b:browsefilter'
 endif
 
-" Enhanced "%" matching (see |:help matchit|)
+" Enhanced "%" matching (see ":help matchit")
 if exists('loaded_matchit') && !exists('b:match_words')
   let b:match_ignorecase = 0
   let b:match_words = '^.\{-}\<\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>:^\s*\:\s*$:^\s*)\s*$'
