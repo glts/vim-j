@@ -22,7 +22,7 @@ syntax match jControl /\<\%(for\|goto\|label\)_\a\k*\./
 
 " Standard library names. A few names need to be defined with ":syntax match"
 " because they would otherwise take precedence over the corresponding jControl
-" and jDefineStart items.
+" and jDefineExpression items.
 syntax keyword jStdlibNoun ARGV BINPATH CR CRLF DEL Debug EAV EMPTY FF FHS IF64 IFIOS IFJCDROID IFJHS IFQT IFRASPI IFUNIX IFWIN IFWINCE IFWINE IFWOW64 JB01 JBOXED JCHAR JCMPX JFL JINT JPTR JSIZES JSTR JTYPES JVERSION LF LF2 TAB UNAME UNXLIB andurl dbhelp libjqt
 syntax keyword jStdlibAdverb define each every fapplylines inv inverse items leaf rows table
 syntax keyword jStdlibConjunction bind cuts def on
@@ -64,17 +64,17 @@ syntax match jVerb /[=!\]]\|[\^?]\.\=\|[;[]:\=\|{\.\|[_/\\]:\|[<>+*\-%$|,#][.:]\
 syntax match jCopula /=[.:]/
 syntax match jConjunction /;\.\|\^:\|![.:]/
 
-" Explicit noun definition. The difficulty is that "0 : 0" etc. can occur in
-" the middle of a line but the jNounDefine region must only start on the next
-" line. The trick is to split the problem into two regions and link them with
-" "nextgroup=".
-syntax region jNounDefineInit
-    \ matchgroup=jDefineStart start=/\<\%(0\|noun\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>/
+" Explicit noun definition. The difficulty is that the define expression
+" "0 : 0" can occur in the middle of a line but the jNounDefine region must
+" only start on the next line. The trick is to split the problem into two
+" regions and link them with "nextgroup=".
+syntax region jNounDefineStart
+    \ matchgroup=jDefineExpression start=/\<\%(0\|noun\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>/
     \ keepend matchgroup=NONE end=/$/
     \ contains=@jStdlibItems,@jPrimitiveItems,jNumber,jString,jParenGroup,jParen,jComment
     \ oneline skipempty nextgroup=jDefineEnd,jNounDefine
 " These two items must have "contained", which allows them to match only after
-" jNounDefineInit thanks to the "nextgroup=" above.
+" jNounDefineStart thanks to the "nextgroup=" above.
 syntax region jNounDefine
     \ matchgroup=NONE start=/^/
     \ matchgroup=jDefineEnd end=/^\s*)\s*$/
@@ -84,14 +84,14 @@ syntax match jDefineEnd contained /^\s*)\s*$/
 
 " Explicit verb, adverb, and conjunction definition
 syntax region jDefine
-    \ matchgroup=jDefineStart start=/\<\%([1-4]\|13\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\>/
+    \ matchgroup=jDefineExpression start=/\<\%([1-4]\|13\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\>/
     \ matchgroup=jDefineEnd end=/^\s*)\s*$/
     \ contains=jControl,@jStdlibItems,@jPrimitiveItems,jNumber,jString,jArgument,jParenGroup,jParen,jComment,jDefineMonadDyad
 syntax match jDefineMonadDyad contained /^\s*:\s*$/
 
-" Paired parentheses. When a jDefineStart such as "3 : 0" is parenthesised it
-" will erroneously extend jParenGroup to span over the whole definition body.
-" This situation receives some special treatment here.
+" Paired parentheses. When a jDefineExpression such as "3 : 0" is
+" parenthesised it will erroneously extend jParenGroup to span over the whole
+" definition body. This situation receives a special treatment here.
 syntax match jParen /(\%(\s*\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\s*)\)\@=/
 syntax match jParen contained /\%((\s*\%([0-4]\|13\|noun\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\s*\)\@<=)/
 syntax region jParenGroup
@@ -119,7 +119,7 @@ highlight default link jCopula            Normal
 highlight default link jArgument          Identifier
 highlight default link jParen             Delimiter
 
-highlight default link jDefineStart       Define
+highlight default link jDefineExpression  Define
 highlight default link jDefineMonadDyad   Delimiter
 highlight default link jDefineEnd         Delimiter
 highlight default link jNounDefine        Normal
