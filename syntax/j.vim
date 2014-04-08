@@ -64,15 +64,20 @@ syntax match jVerb /[=!\]]\|[\^?]\.\=\|[;[]:\=\|{\.\|[_/\\]:\|[<>+*\-%$|,#][.:]\
 syntax match jCopula /=[.:]/
 syntax match jConjunction /;\.\|\^:\|![.:]/
 
-" Explicit noun definition. The difficulty is that the define expression
-" "0 : 0" can occur in the middle of a line but the jNounDefine region must
-" only start on the next line. The trick is to split the problem into two
-" regions and link them with "nextgroup=".
+" Explicit noun definition. The difficulty is that the define expression can
+" occur in the middle of a line but the jNounDefine region must only start on
+" the next line. The trick is to split the problem into two regions and link
+" them with "nextgroup=". The fold wrapper provides syntax folding.
+syntax region jNounDefineFold
+    \ matchgroup=NONE start=/\<\%(\%(0\|noun\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>\)\@=/
+    \ keepend matchgroup=NONE end=/^\s*)\s*$/
+    \ contains=jNounDefineStart
+    \ fold
 syntax region jNounDefineStart
     \ matchgroup=jDefineExpression start=/\<\%(0\|noun\)\s\+\%(\:\s*0\|def\s\+0\|define\)\>/
     \ keepend matchgroup=NONE end=/$/
     \ contains=@jStdlibItems,@jPrimitiveItems,jNumber,jString,jParenGroup,jParen,jComment
-    \ oneline skipempty nextgroup=jDefineEnd,jNounDefine
+    \ contained oneline skipempty nextgroup=jDefineEnd,jNounDefine
 " These two items must have "contained", which allows them to match only after
 " jNounDefineStart thanks to the "nextgroup=" above.
 syntax region jNounDefine
@@ -87,6 +92,7 @@ syntax region jDefine
     \ matchgroup=jDefineExpression start=/\<\%([1-4]\|13\|adverb\|conjunction\|verb\|monad\|dyad\)\s\+\%(:\s*0\|def\s\+0\|define\)\>/
     \ matchgroup=jDefineEnd end=/^\s*)\s*$/
     \ contains=jControl,@jStdlibItems,@jPrimitiveItems,jNumber,jString,jArgument,jParenGroup,jParen,jComment,jDefineMonadDyad
+    \ fold
 syntax match jDefineMonadDyad contained /^\s*:\s*$/
 
 " Paired parentheses. When a jDefineExpression such as "3 : 0" is
