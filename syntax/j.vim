@@ -35,19 +35,19 @@ syntax match jStdlibVerb /\<\%(assert\|break\|do\)\>\.\@!/
 " accepts most well-formed numbers and rejects most of the ill-formed ones.
 " See http://www.jsoftware.com/help/dictionary/dcons.htm for reference.
 "
-" 'double1' and 'double2' patterns:
+" "double1" and "double2" patterns:
 "     (_?\d+(\.\d*)?|_\.\d+)([eE]_?\d+)?
 "     (_?\d+(\.\d*)?|_\.\d+|\.\d+)([eE]_?\d+)?
 "
-" 'rational1' and 'rational2' patterns:
+" "rational1" and "rational2" patterns:
 "     \k<double1>(r\k<double2>)?|__?
 "     \k<double2>(r\k<double2>)?|__?
 "
-" 'complex1' and 'complex2' patterns:
+" "complex1" and "complex2" patterns:
 "     \k<rational1>((j|a[dr])\k<rational2>)?
 "     \k<rational2>((j|a[dr])\k<rational2>)?
 "
-" 'basevalue' pattern:
+" "basevalue" pattern:
 "     _?[0-9a-z]+(\.[0-9a-z]*)?|_?\.[0-9a-z]+
 "
 " all numbers:
