@@ -2,7 +2,7 @@
 " Language:	J
 " Maintainer:	David Bürgin <676c7473@gmail.com>
 " URL:		https://github.com/glts/vim-j
-" Last Change:	2014-05-25
+" Last Change:	2014-10-05
 
 if exists('b:current_syntax')
   finish
