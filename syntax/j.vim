@@ -112,7 +112,7 @@ syntax region jParenGroup
     \ oneline transparent
 
 syntax keyword jTodo contained TODO FIXME XXX
-syntax match jComment /NB\..*$/ contains=jTodo,@Spell
+syntax match jComment /\<NB\..*$/ contains=jTodo,@Spell
 
 syntax match jSharpBang /\%^#!.*$/
 
