@@ -38,17 +38,17 @@ function! s:SearchSection(end, backwards, visualmode) abort
   endif
 endfunction
 
-noremap <script> <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, '')<CR>
-xnoremap <script> <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, visualmode())<CR>
+noremap <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, '')<CR>
+xnoremap <buffer> <silent> ]] :<C-U>call <SID>SearchSection(0, 0, visualmode())<CR>
 sunmap <buffer> ]]
-noremap <script> <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, '')<CR>
-xnoremap <script> <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, visualmode())<CR>
+noremap <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, '')<CR>
+xnoremap <buffer> <silent> ][ :<C-U>call <SID>SearchSection(1, 0, visualmode())<CR>
 sunmap <buffer> ][
-noremap <script> <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, '')<CR>
-xnoremap <script> <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, visualmode())<CR>
+noremap <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, '')<CR>
+xnoremap <buffer> <silent> [[ :<C-U>call <SID>SearchSection(0, 1, visualmode())<CR>
 sunmap <buffer> [[
-noremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, '')<CR>
-xnoremap <script> <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, visualmode())<CR>
+noremap <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, '')<CR>
+xnoremap <buffer> <silent> [] :<C-U>call <SID>SearchSection(1, 1, visualmode())<CR>
 sunmap <buffer> []
 
 let b:undo_ftplugin .= ' | silent! execute "unmap <buffer> ]]"'
