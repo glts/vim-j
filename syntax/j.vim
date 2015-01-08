@@ -113,6 +113,9 @@ syntax region jParenGroup
 
 syntax keyword jTodo contained TODO FIXME XXX
 syntax match jComment /NB\..*$/ contains=jTodo,@Spell
+syntax region jComment
+    \ start="^\s*Note"
+    \ end="^)\s*$" contains=jTodo,@spell keepend fold
 
 syntax match jSharpBang /\%^#!.*$/
 
