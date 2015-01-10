@@ -16,7 +16,9 @@ setlocal iskeyword=48-57,A-Z,_,a-z
 setlocal comments=:NB.
 setlocal commentstring=NB.\ %s
 setlocal formatoptions-=t
-setlocal shiftwidth=2 softtabstop=2 expandtab
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal expandtab
 setlocal matchpairs=(:)
 
 let b:undo_ftplugin = 'setlocal matchpairs< expandtab< softtabstop< shiftwidth< formatoptions< commentstring< comments< iskeyword<'
