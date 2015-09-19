@@ -17,8 +17,12 @@ setlocal comments=:NB.
 setlocal commentstring=NB.\ %s
 setlocal formatoptions-=t
 setlocal matchpairs=(:)
+setlocal path-=/usr/include
+setlocal include=\\v^\\s*(load\|require)\\s*'\\zs\\f+\\ze'
+setlocal includeexpr=substitute(v:fname,'\\v^\\~[^/]+/','','')
+setlocal suffixesadd=.ijs
 
-let b:undo_ftplugin = 'setlocal matchpairs< formatoptions< commentstring< comments< iskeyword<'
+let b:undo_ftplugin = 'setlocal matchpairs< formatoptions< commentstring< comments< iskeyword< path< include< includeexpr< suffixesadd<'
 
 " Section movement with ]] ][ [[ []. The start/end patterns below are amended
 " inside the function in order to avoid matching on the current cursor line.
