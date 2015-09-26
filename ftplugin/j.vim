@@ -12,7 +12,7 @@ let b:did_ftplugin = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-setlocal iskeyword=48-57,A-Z,_,a-z
+setlocal iskeyword=48-57,A-Z,a-z,_
 setlocal comments=:NB.
 setlocal commentstring=NB.\ %s
 setlocal formatoptions-=t
