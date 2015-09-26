@@ -18,8 +18,11 @@ setlocal commentstring=NB.\ %s
 setlocal formatoptions-=t
 setlocal matchpairs=(:)
 setlocal path-=/usr/include
+
+" Includes. To make the shorthand form "require 'web/cgi'" work, double the
+" last path component. Also strip off leading folder names like "~addons/".
 setlocal include=\\v^\\s*(load\|require)\\s*'\\zs\\f+\\ze'
-setlocal includeexpr=substitute(v:fname,'\\v^\\~[^/]+/','','')
+setlocal includeexpr=substitute(substitute(tr(v:fname,'\\','/'),'\\v^[^~][^/.]*(/[^/.]+)$','&\\1',''),'\\v^\\~[^/]+/','','')
 setlocal suffixesadd=.ijs
 
 let b:undo_ftplugin = 'setlocal matchpairs< formatoptions< commentstring< comments< iskeyword< path< include< includeexpr< suffixesadd<'
