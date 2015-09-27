@@ -2,7 +2,7 @@
 " Language:	J
 " Maintainer:	David Bürgin <676c7473@gmail.com>
 " URL:		https://github.com/glts/vim-j
-" Last Change:	2015-03-27
+" Last Change:	2015-09-27
 
 if exists('b:did_ftplugin')
   finish
