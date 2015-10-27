@@ -25,7 +25,7 @@ setlocal include=\\v^\\s*(load\|require)\\s*'\\zs\\f+\\ze'
 setlocal includeexpr=substitute(substitute(tr(v:fname,'\\','/'),'\\v^[^~][^/.]*(/[^/.]+)$','&\\1',''),'\\v^\\~[^/]+/','','')
 setlocal suffixesadd=.ijs
 
-let b:undo_ftplugin = 'setlocal matchpairs< formatoptions< commentstring< comments< iskeyword< path< include< includeexpr< suffixesadd<'
+let b:undo_ftplugin = 'setlocal suffixesadd< includeexpr< include< path< matchpairs< formatoptions< commentstring< comments< iskeyword<'
 
 " Section movement with ]] ][ [[ []. The start/end patterns below are amended
 " inside the function in order to avoid matching on the current cursor line.
